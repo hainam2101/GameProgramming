@@ -1,5 +1,6 @@
 // Include OpenGL ES Engine utils
 #include <es_util.h>
+#include "GameState.h"
 
 float count = 0.0f;
 
@@ -63,6 +64,17 @@ void update(ESContext*, float deltaTime)
 }
 
 //extern "C" void app_dummy();
+
+class GameApp
+{
+public:
+	GameApp();
+	~GameApp();
+
+	bool update(ESContext*, float deltaTime);
+	void render(ESContext*);
+	void setState(GameState newState);
+};
 
 int main(int argc, char *argv[])
 {
