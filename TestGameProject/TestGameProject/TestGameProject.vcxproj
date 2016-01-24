@@ -86,6 +86,8 @@
   <ItemGroup>
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="SlashScreenState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\yam2d\engine\build\win32_vs13\yam2d.vcxproj">
@@ -94,6 +96,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="MenuState.h" />
+    <ClInclude Include="SlashScreenState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

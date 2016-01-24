@@ -54,32 +54,15 @@ void draw(ESContext *esContext)
 }
 
 
-// update game
-void update(ESContext*, float deltaTime)
-{
-	count += deltaTime;
 
-	if (count > 1.0f)
-		count = 0.0f;
-}
 
 //extern "C" void app_dummy();
 
-class GameApp
-{
-public:
-	GameApp();
-	~GameApp();
 
-	bool update(ESContext*, float deltaTime);
-	void render(ESContext*);
-	void setState(GameState newState);
-};
 
 int main(int argc, char *argv[])
 {
-
-
+	GameState gs;
 	ESContext esContext;
 	esInitContext(&esContext);
 	esCreateWindow(&esContext, "Hello Triangle", 1280, 720, ES_WINDOW_DEFAULT);
@@ -87,7 +70,7 @@ int main(int argc, char *argv[])
 
 	esRegisterInitFunc(&esContext, init);
 	esRegisterDrawFunc(&esContext, draw);
-	esRegisterUpdateFunc(&esContext, update);
+	esRegisterUpdateFunc(&esContext, gs.update);
 	esRegisterDeinitFunc(&esContext, deinit);
 
 	esMainLoop(&esContext);
