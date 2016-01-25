@@ -3,16 +3,17 @@
 #include "GameState.h"
 
 
+
 class MenuState : public GameState
 {
 public:
 	MenuState();
-	~MenuState();
+	virtual~MenuState();
 
-	virtual bool update(ESContext*, float deltaTime);
+	virtual bool update(ESContext* ctx, float deltaTime);
 
 private:
-	yam2d::Ref<yam2d::Map> m_map;
+	Ref<Map> m_map;
 };
 
 #endif
