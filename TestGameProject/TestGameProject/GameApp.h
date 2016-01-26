@@ -19,6 +19,7 @@ public:
 
 private:
 	Ref<GameState> m_currentState;
+
 };
 
 #endif

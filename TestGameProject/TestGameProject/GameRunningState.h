@@ -10,7 +10,9 @@ public:
 	GameRunningState();
 	virtual~GameRunningState();
 
-	virtual bool update(ESContext* ctx, float deltaTime);
+	virtual bool update(ESContext* ctx, float deltaTime)
+	{
+	}
 	virtual void render(ESContext* ctx);
 private:
 };

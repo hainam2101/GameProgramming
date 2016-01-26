@@ -85,11 +85,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameApp.cpp" />
-    <ClCompile Include="GameRunningState.cpp" />
-    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MenuState.cpp" />
-    <ClCompile Include="SplashScreenState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\yam2d\engine\build\win32_vs13\yam2d.vcxproj">

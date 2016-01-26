@@ -4,7 +4,11 @@
 #include "es_util.h"
 #include "Ref.h"
 #include "Map.h"
+#include "SpriteBatch.h"
 #include "Sprite.h"
+#include "Text.h"
+#include "SpriteSheet.h"
+#include "Texture.h"
 
 class GameApp;
 
@@ -12,17 +16,32 @@ using namespace yam2d;
 
 class GameState : public Object
 {
-public:
-	GameState();
-	virtual~GameState();
+protected:
+	GameState(GameApp* app){}
 
-	virtual bool update(ESContext* ctx, float deltaTime);
-	virtual void render(ESContext* ctx);
+
+	Ref<Texture>openGLTexture = 0;
+	Ref<Text>text = 0;
+	Ref<Texture>fontTexture = 0;
+	Ref<Sprite>sprite = 0;
+	Ref<SpriteBatchGroup>batch = 0;
+	Ref<SpriteSheet>font = 0;
+public:
+	virtual~GameState(){}
+
+	virtual bool update(ESContext* ctx, float deltaTime)
+	{
+		return true;
+	}
+	virtual void render(ESContext* ctx)
+	{
+
+	}
 
 	
 	GameApp* getApp();
 private:
-
+	GameApp* m_app;
 };
 
 #endif
