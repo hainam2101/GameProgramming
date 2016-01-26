@@ -29,6 +29,7 @@ void deinit(ESContext *esContext)
 
 // Draw game
 void draw(ESContext *esContext)
+
 {
 	game->render(esContext);
 }

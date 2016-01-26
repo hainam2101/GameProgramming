@@ -1,7 +1,7 @@
 #ifndef SPLASHSCREENSTATE_H
 #define SLASHSCREENSTATE_H
 #include "GameState.h"
-
+#include "MenuState.h"
 
 class SplashScreenState : public GameState
 {
@@ -51,7 +51,7 @@ public:
 		//count += deltaTime;
 
 		// Set text.
-		text->setText("Hello world!!");
+		text->setText("Moro mualima!!");
 
 		// Clear sprite before add new dynamic sprites.
 		batch->clear();
@@ -64,7 +64,8 @@ public:
 		m_totalTime += deltaTime;
 		if (m_totalTime > 3.0f)
 		{
-
+			MenuState* menu = new MenuState(getApp());
+			getApp()->setState(menu);
 		}
 		return true;
 	}

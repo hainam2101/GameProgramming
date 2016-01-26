@@ -4,6 +4,7 @@
 #include "es_util.h"
 #include "Ref.h"
 #include "Map.h"
+#include "Input.h"
 #include "SpriteBatch.h"
 #include "Sprite.h"
 #include "Text.h"
@@ -26,6 +27,7 @@ protected:
 	Ref<Sprite>sprite = 0;
 	Ref<SpriteBatchGroup>batch = 0;
 	Ref<SpriteSheet>font = 0;
+
 public:
 	virtual~GameState(){}
 
@@ -37,9 +39,8 @@ public:
 	{
 
 	}
-
 	
-	GameApp* getApp();
+	GameApp* getApp(){ return m_app; };
 private:
 	GameApp* m_app;
 };
