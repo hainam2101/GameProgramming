@@ -6,7 +6,7 @@
 class SplashScreenState : public GameState
 {
 public:
-	SplashScreenState(GameApp* app) : GameState(app)
+	SplashScreenState(GameApp* app) : GameState(app), m_app(app)
 	{
 		esLogMessage(__FUNCTION__);
 		int cc = 0;
@@ -40,9 +40,6 @@ public:
 
 	virtual~SplashScreenState()
 	{
-		delete sprite;
-		delete text;
-		delete batch;
 	}
 	virtual bool update(ESContext* ctx, float deltaTime)
 	{
@@ -64,8 +61,9 @@ public:
 		m_totalTime += deltaTime;
 		if (m_totalTime > 3.0f)
 		{
-			MenuState* menu = new MenuState(getApp());
-			getApp()->setState(menu);
+			//MenuState* menu = new MenuState(getApp());
+			getApp()->setState(new MenuState(getApp()));
+			return true;
 		}
 		return true;
 	}
@@ -115,7 +113,7 @@ public:
 	}
 private:
 	float m_totalTime;
-
+	GameApp* m_app;
 
 };
 

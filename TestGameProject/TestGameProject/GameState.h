@@ -10,6 +10,7 @@
 #include "Text.h"
 #include "SpriteSheet.h"
 #include "Texture.h"
+#include "GameApp.h"
 
 class GameApp;
 

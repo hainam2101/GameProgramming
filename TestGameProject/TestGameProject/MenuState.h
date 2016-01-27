@@ -7,7 +7,7 @@
 class MenuState : public GameState
 {
 public:
-	MenuState(GameApp* app) : GameState(app)
+	MenuState(GameApp* app) : GameState(app), m_app(app)
 	{
 	}
 	virtual~MenuState()
@@ -21,8 +21,9 @@ public:
 	}
 
 private:
+	GameApp* m_app;
 	Ref<Map> m_map;
-	Ref<Layer>Background, Objects;
+	//Ref<Layer>Background, Objects;
 };
 
 #endif
