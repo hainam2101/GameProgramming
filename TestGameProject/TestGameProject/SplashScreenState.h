@@ -6,7 +6,7 @@
 class SplashScreenState : public GameState
 {
 public:
-	SplashScreenState(GameApp* app) : GameState(app), m_app(app)
+	SplashScreenState(GameApp* app) : GameState(app)
 	{
 		esLogMessage(__FUNCTION__);
 		int cc = 0;
@@ -113,7 +113,6 @@ public:
 	}
 private:
 	float m_totalTime;
-	GameApp* m_app;
 
 };
 

@@ -5,10 +5,12 @@
 #include "Ref.h"
 #include "Map.h"
 #include "Input.h"
+#include "Layer.h"
 #include "SpriteBatch.h"
 #include "Sprite.h"
 #include "Text.h"
 #include "SpriteSheet.h"
+#include "SpriteComponent.h"
 #include "Texture.h"
 #include "GameApp.h"
 
@@ -19,7 +21,7 @@ using namespace yam2d;
 class GameState : public Object
 {
 protected:
-	GameState(GameApp* app){}
+	GameState(GameApp* app) : m_app(app){}
 
 
 	Ref<Texture>openGLTexture = 0;
