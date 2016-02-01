@@ -4,6 +4,7 @@
 #include "es_util.h"
 #include "Ref.h"
 #include "Map.h"
+#include "Camera.h"
 #include "Input.h"
 #include "Layer.h"
 #include "SpriteBatch.h"

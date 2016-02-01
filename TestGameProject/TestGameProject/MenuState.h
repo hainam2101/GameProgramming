@@ -1,6 +1,7 @@
 #ifndef MENUSTATE_H
 #define MENUSTATE_H
 #include "GameState.h"
+#include "GameRunningState.h"
 
 
 
@@ -10,123 +11,140 @@ public:
 	MenuState(GameApp* app) : GameState(app), m_app(app)
 	{
 		esLogMessage(__FUNCTION__);
-		int cc = 0;
-		esLogMessage("Init... %d", cc++);
-		// Create new sprite batch group. This must be deleted at deinit.
-		batch = new SpriteBatchGroup();
-
-		esLogMessage("Init... %d", cc++);
-		// Load OpenGL logo to be used as texture for sprite.
-		openGLTexture = new Texture("menu.png");
-
-		esLogMessage("Init... %d", cc++);
-		// Create new sprite, with default parameters.
-		sprite = new Sprite(0);
-
-		esLogMessage("Init... %d", cc++);
-		// Load font texture. Made with font creation tool like bitmap font builder.
-		fontTexture = new Texture("Fixedsys_24_Bold.png");
-
-		esLogMessage("Init... %d", cc++);
-		// Create font clip areas (sprite sheet), from dat file and texture. Dat-file is made with bitmap font builder.
-		font = SpriteSheet::autoFindFontFromTexture(fontTexture, "Fixedsys_24_Bold.dat");
-
-		esLogMessage("Init... %d", cc++);
-		// Create new text-object
-		text = new Text(0, font);
 
 		///////////////////////////////////////
 		
 		// Level tile size
-		vec2 tileSize(64, 64);
+		vec2 tileSize(484, 96);
 
 		// Create new map, which tile width == tile height == 32 pixels/tile
 		m_map = new Map(tileSize.x, tileSize.y);
 
-		Background = (m_map, "Background", 1.0f, true, false);
-
+		Background = new Layer(m_map, "Background", 1.0f, true, false);
 		m_map->addLayer(Map::BACKGROUND0, Background);
+		GameObject* backGroundGameObject = createSpriteGameObject("menu.png", 1280.0f, 720.0f, false);
 
-		Objects = (m_map, "Objects", 1.0f, true, false);
+		Objects = new Layer(m_map, "Objects", 1.0f, true, false);
 		m_map->addLayer(Map::MAPLAYER0, Objects);
+
+		GameObject* startButtonObject = createSpriteGameObject("buttons.png", tileSize.x, tileSize.y, 0, 0, 484, 96, true);
+		Objects->addGameObject(startButtonObject);
+		startButtonObject->setPosition(0.0, 2);
+		startButtonObject->setName("Start");
+
+		GameObject* exitButtonObject = createSpriteGameObject("buttons.png", tileSize.x, tileSize.y, 242, 0, 242, 96, true);
+		Objects->addGameObject(exitButtonObject);
+		exitButtonObject->setPosition(0.0, 6);
+		exitButtonObject->setName("Exit");
 
 		esLogMessage("Init... Done");
 	}
+
+	GameObject* createSpriteGameObject(const std::string& bitmapFileName, float sizeX, float sizeY, bool isWhiteTransparentColor = false)
+	{
+		// Load texture to be used as texture for sprite.
+		Texture* texture = new Texture(bitmapFileName.c_str());
+
+		// If user wants to create texture which white coros is treated as atransparent color.
+		if (isWhiteTransparentColor)
+		{
+			// Set white to transparent. Here color values are from 0 to 255 (RGB)
+			texture->setTransparentColor(255, 255, 255);
+		}
+
+		// Create new sprite GameObject from texture.
+		GameObject* gameObject = new GameObject(0, 0);
+		SpriteComponent* sprite = new SpriteComponent(gameObject, texture);
+
+		// Resize the sprite to be correct size
+		gameObject->setSize(sizeX, sizeY);
+
+		// Add sprite component to game object
+		gameObject->addComponent(sprite);
+		return gameObject;
+	}
+
+	GameObject* MenuState::createSpriteGameObject(const std::string& bitmapFileName, float sizeX, float sizeY, int clipStartX, int clipStartY, int clipSizeX, int clipSizeY, bool isWhiteTransparentColor = false)
+	{
+		// Load texture to be used as texture for sprite.
+		Texture* texture = new Texture(bitmapFileName.c_str());
+
+		// If user wants to create texture which white coros is treated as atransparent color.
+		if (isWhiteTransparentColor)
+		{
+			// Set white to transparent. Here color values are from 0 to 255 (RGB)
+			texture->setTransparentColor(255, 255, 255);
+		}
+
+		// Create new sprite GameObject from texture.
+		GameObject* gameObject = new GameObject(0, 0);
+		SpriteComponent* sprite = new SpriteComponent(gameObject, texture);
+
+		// Resize the sprite to be correct size
+		gameObject->setSize(sizeX, sizeY);
+
+		// Specify clip area by start point and size in pixels
+		Sprite::PixelClip clip;
+		clip.topLeft.x = clipStartX;
+		clip.topLeft.y = clipStartY;
+		clip.clipSize.x = clipSizeX;
+		clip.clipSize.y = clipSizeY;
+
+		// Set pixel clip for sprite
+		sprite->getSprite()->setClip(float(texture->getWidth()), float(texture->getHeight()), clip);
+
+		// Add sprite component to game object
+		gameObject->addComponent(sprite);
+		return gameObject;
+	}
+
 	virtual~MenuState(){}
 
 	virtual bool update(ESContext* ctx, float deltaTime)
 	{
-		text->setText("Start");
-
-		batch->clear();
-
-		batch->addSprite(openGLTexture, sprite, vec2(0, 0), 0, vec2(1280, 720));
-
-		batch->addText(fontTexture, text, vec2(-ctx->width / 3, ctx->height / 3), 0);
-
-		text->setText("Exit");
-
-		batch->addText(fontTexture, text, vec2(-ctx->width / 3, ctx->height / 6), 0);
-
+		// Read mouse values
 		float mouseX = float(getMouseAxisX());
 		float mouseY = float(getMouseAxisY());
+
+		// Convert mouse coordinates to map coordinates.
 		vec2 mouseInMapCoordinates = m_map->screenToMapCoordinates(mouseX, mouseY);
 
 		GameObject* pickedObject = m_map->getLayer("Objects")->pick(mouseInMapCoordinates);
-		if (pickedObject != 0)
+		
+		std::string start = "Start";
+		std::string exit = "Exit";
+
+		if (pickedObject != nullptr)
 		{
-			esLogMessage("Object %s picked!", pickedObject->getName().c_str());
+			std::string test1 = pickedObject->getName();
+			if (test1.compare(start) == 0)
+			{
+				esLogMessage("Object %s picked!", pickedObject->getName().c_str());
+				getApp()->setState(new GameRunningState(getApp()));
+			}
+			else if (test1.compare(exit) == 0)
+			{
+				esLogMessage("Object not picked!");
+			}
 		}
-		else
-		{
-			esLogMessage("Object not picked!");
-		}
+		m_map->update(deltaTime);
 
 		return true;
 	}
 
 	virtual void render(ESContext* ctx)
 	{
-		// Set OpenGL clear color
-		glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+		// Set OpenGL clear color (dark gray)
+		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
 		// Clear the color buffer
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
-		// Set the viewport to be full window area.
-		glViewport(0, 0, ctx->width, ctx->height);
+		// Set screen size to camera.
+		m_map->getCamera()->setScreenSize(ctx->width, ctx->height, 720, 1280.0f / 720.0f);
 
-		// Set projection to identity
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-
-		// Calculate half screen size
-		float left = -0.5f*ctx->width;
-		float right = 0.5f*ctx->width;
-		float bottom = -0.5f*ctx->height;
-		float top = 0.5f*ctx->height;
-
-		// Set OpenGL orthogonal projection for screen size <esContext->width,esContext->height>
-		glOrthof(float(int(left)), float(int(right)), float(int(bottom)), float(int(top)), -1.0, 1.0f);
-
-		// Enable back face culling
-		glEnable(GL_CULL_FACE);
-		glCullFace(GL_BACK);
-
-		// Enable depth test
-		glEnable(GL_DEPTH_TEST);
-		glDepthFunc(GL_LEQUAL);
-
-		// Enable alpha blending (transparency)
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-		// Set model view matrix to identity
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
-
-		// Draw batched objects to screen.
-		batch->render();
+		// Render map and all of its layers containing GameObjects to screen.
+		m_map->render();
 	}
 
 private:

@@ -54,14 +54,13 @@ public:
 		batch->clear();
 
 		// Add sprite. Rotate it according to total time. We need also scale font a bit (100 times, so the sprite is 100x100 pixels).
-		batch->addSprite(openGLTexture, sprite, vec2(0, 0), 0, vec2(100));
+		batch->addSprite(openGLTexture, sprite, vec2(0, 0), 0, vec2(720, 320));
 
 		// Add text to position -400,300
 		batch->addText(fontTexture, text, vec2(-ctx->width / 3, ctx->height / 3), 0);
 		m_totalTime += deltaTime;
-		if (m_totalTime > 3.0f)
+		if (m_totalTime > 1.5f)
 		{
-			//MenuState* menu = new MenuState(getApp());
 			getApp()->setState(new MenuState(getApp()));
 			return true;
 		}
@@ -71,7 +70,7 @@ public:
 	virtual void render(ESContext* ctx)
 	{
 		// Set OpenGL clear color
-		glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+		glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
 
 		// Clear the color buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
