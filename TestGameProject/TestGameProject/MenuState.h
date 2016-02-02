@@ -30,12 +30,14 @@ public:
 
 		GameObject* startButtonObject = createSpriteGameObject("buttons.png", tileSize.x, tileSize.y, 0, 0, 242, 96, true);
 		Objects->addGameObject(startButtonObject);
-		startButtonObject->setPosition(0.0, 1);
+		startButtonObject->setPosition(0.0, 2);
+		startButtonObject->setSize(tileSize.x / 1.5, tileSize.y / 1.5);
 		startButtonObject->setName("Start");
 
 		GameObject* exitButtonObject = createSpriteGameObject("buttons.png", tileSize.x, tileSize.y, 242, 0, 242, 96, true);
 		Objects->addGameObject(exitButtonObject);
-		exitButtonObject->setPosition(0.0, 2);
+		exitButtonObject->setPosition(0.0, 3);
+		exitButtonObject->setSize(tileSize.x/2, tileSize.y/2);
 		exitButtonObject->setName("Exit");
 
 		esLogMessage("Init... Done");

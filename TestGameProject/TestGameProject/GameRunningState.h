@@ -47,6 +47,7 @@ public:
 
 		// Set text.
 		text->setText("Game Running State!!");
+		text->setColor(0.5, 1.0, 0.0, 1.0);
 
 		// Clear sprite before add new dynamic sprites.
 		batch->clear();
@@ -103,6 +104,8 @@ public:
 		batch->render();
 	}
 private:
+	GameApp* m_app;
+	Ref<Map> m_map;
 };
 
 #endif

@@ -16,7 +16,7 @@ public:
 
 		esLogMessage("Init... %d", cc++);
 		// Load OpenGL logo to be used as texture for sprite.
-		openGLTexture = new Texture("opengl-logo.png");
+		openGLTexture = new Texture("splash.png");
 
 		esLogMessage("Init... %d", cc++);
 		// Create new sprite, with default parameters.
@@ -38,28 +38,26 @@ public:
 		
 	}
 
-	virtual~SplashScreenState()
-	{
-	}
+	virtual~SplashScreenState(){}
 	virtual bool update(ESContext* ctx, float deltaTime)
 	{
-		//esLogMessage(__FUNCTION__);
-		// Update total time counter.
-		//count += deltaTime;
-
 		// Set text.
-		text->setText("Moro mualima!!");
+		text->setText("Splash screen!!");
+		text->setColor(1.0, 0.0, 0.0, 1.0);
+		text->setDepth(1.0f); // ilman ei näy teksti ???????
 
 		// Clear sprite before add new dynamic sprites.
 		batch->clear();
 
 		// Add sprite. Rotate it according to total time. We need also scale font a bit (100 times, so the sprite is 100x100 pixels).
-		batch->addSprite(openGLTexture, sprite, vec2(0, 0), 0, vec2(720, 320));
+		batch->addSprite(openGLTexture, sprite, vec2(0, 0), 0, vec2(1280, 720));
 
 		// Add text to position -400,300
 		batch->addText(fontTexture, text, vec2(-ctx->width / 3, ctx->height / 3), 0);
+
 		m_totalTime += deltaTime;
-		if (m_totalTime > 1.5f)
+
+		if (m_totalTime > 5.0f)
 		{
 			getApp()->setState(new MenuState(getApp()));
 			return true;
