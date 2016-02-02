@@ -8,7 +8,7 @@
 class MenuState : public GameState
 {
 public:
-	MenuState(GameApp* app) : GameState(app), m_app(app)
+	MenuState(GameApp* app) : GameState(app), m_app(app), Background(0), Objects(0)
 	{
 		esLogMessage(__FUNCTION__);
 
@@ -23,6 +23,7 @@ public:
 		Background = new Layer(m_map, "Background", 1.0f, true, false);
 		m_map->addLayer(Map::BACKGROUND0, Background);
 		GameObject* backGroundGameObject = createSpriteGameObject("menu.png", 1280.0f, 720.0f, false);
+		Background->addGameObject(backGroundGameObject);
 
 		Objects = new Layer(m_map, "Objects", 1.0f, true, false);
 		m_map->addLayer(Map::MAPLAYER0, Objects);
@@ -64,7 +65,7 @@ public:
 		return gameObject;
 	}
 
-	GameObject* MenuState::createSpriteGameObject(const std::string& bitmapFileName, float sizeX, float sizeY, int clipStartX, int clipStartY, int clipSizeX, int clipSizeY, bool isWhiteTransparentColor = false)
+	GameObject* MenuState::createSpriteGameObject(const std::string& bitmapFileName, float sizeX, float sizeY, int clipStartX, int clipStartY, int clipSizeX, int clipSizeY, bool isWhiteTransparentColor)
 	{
 		// Load texture to be used as texture for sprite.
 		Texture* texture = new Texture(bitmapFileName.c_str());
@@ -130,7 +131,11 @@ public:
 				return false;
 			}
 		}
-		m_map->update(deltaTime);
+		else
+		{
+			m_map->update(deltaTime);
+
+		}
 
 
 	}

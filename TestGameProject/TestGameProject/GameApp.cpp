@@ -12,8 +12,15 @@ GameApp::~GameApp()
 
 bool GameApp::update(ESContext* ctx, float deltaTime)
 {
-	m_currentState->update(ctx, deltaTime);
-	return true;
+	if (m_currentState->update(ctx, deltaTime)==false)
+		esQuitApp(ctx);
+	else
+	{
+		m_currentState->update(ctx, deltaTime);
+		return true;
+	}
+
+	
 }
 
 void GameApp::render(ESContext* ctx)
