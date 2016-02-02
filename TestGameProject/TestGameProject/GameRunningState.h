@@ -52,7 +52,7 @@ public:
 		batch->clear();
 
 		// Add sprite. Rotate it according to total time. We need also scale font a bit (100 times, so the sprite is 100x100 pixels).
-		batch->addSprite(openGLTexture, sprite, vec2(0, 0), 0, vec2(720, 360));
+		batch->addSprite(openGLTexture, sprite, vec2(0, 0), 0, vec2(1280, 720));
 
 		// Add text to position -400,300
 		batch->addText(fontTexture, text, vec2(-ctx->width / 3, ctx->height / 3), 0);

@@ -15,7 +15,7 @@ public:
 		///////////////////////////////////////
 		
 		// Level tile size
-		vec2 tileSize(484, 96);
+		vec2 tileSize(242, 96);
 
 		// Create new map, which tile width == tile height == 32 pixels/tile
 		m_map = new Map(tileSize.x, tileSize.y);
@@ -27,14 +27,14 @@ public:
 		Objects = new Layer(m_map, "Objects", 1.0f, true, false);
 		m_map->addLayer(Map::MAPLAYER0, Objects);
 
-		GameObject* startButtonObject = createSpriteGameObject("buttons.png", tileSize.x, tileSize.y, 0, 0, 484, 96, true);
+		GameObject* startButtonObject = createSpriteGameObject("buttons.png", tileSize.x, tileSize.y, 0, 0, 242, 96, true);
 		Objects->addGameObject(startButtonObject);
-		startButtonObject->setPosition(0.0, 2);
+		startButtonObject->setPosition(0.0, 1);
 		startButtonObject->setName("Start");
 
 		GameObject* exitButtonObject = createSpriteGameObject("buttons.png", tileSize.x, tileSize.y, 242, 0, 242, 96, true);
 		Objects->addGameObject(exitButtonObject);
-		exitButtonObject->setPosition(0.0, 6);
+		exitButtonObject->setPosition(0.0, 2);
 		exitButtonObject->setName("Exit");
 
 		esLogMessage("Init... Done");
@@ -116,20 +116,23 @@ public:
 
 		if (pickedObject != nullptr)
 		{
+
 			std::string test1 = pickedObject->getName();
-			if (test1.compare(start) == 0)
+			if (test1.compare(start) == 0 && getMouseButtonState(MOUSE_LEFT))
 			{
 				esLogMessage("Object %s picked!", pickedObject->getName().c_str());
 				getApp()->setState(new GameRunningState(getApp()));
+				return true;
 			}
-			else if (test1.compare(exit) == 0)
+			else if (test1.compare(exit) == 0 && getMouseButtonState(MOUSE_LEFT))
 			{
-				esLogMessage("Object not picked!");
+				esLogMessage("Object %s picked!", pickedObject->getName().c_str());
+				return false;
 			}
 		}
 		m_map->update(deltaTime);
 
-		return true;
+
 	}
 
 	virtual void render(ESContext* ctx)
