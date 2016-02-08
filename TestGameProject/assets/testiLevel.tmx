@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="12" tilewidth="64" tileheight="64" nextobjectid="1">
+ <tileset firstgid="1" name="Sandels" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="Sandels.png" trans="ffffff" width="297" height="297"/>
+ </tileset>
+ <tileset firstgid="17" name="puppycat" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="puppycat.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="18" name="wall" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="wall.png" width="68" height="64"/>
+ </tileset>
+ <layer name="Background" width="20" height="12">
+  <data encoding="base64" compression="zlib">
+   eJztzDkOgEAMQ9HAsAw7zP0Py6dIA4oUREosPcluXESkBIvK/a9CjYTGsbVbfy069MiOrd36GzBiwuzY2q2/BSs27I6t3fr7mv/vmSP4702urxMafATi
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1"/>
+</map>

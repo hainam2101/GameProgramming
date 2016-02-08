@@ -9,103 +9,128 @@ class GameRunningState :
 public:
 	GameRunningState(GameApp* app) : GameState(app)
 	{
-		esLogMessage(__FUNCTION__);
+		esLogMessage("Init first level");
 		int cc = 0;
-		esLogMessage("Init... %d", cc++);
-		// Create new sprite batch group. This must be deleted at deinit.
-		batch = new SpriteBatchGroup();
+
+		float zoom = 1.0f;
 
 		esLogMessage("Init... %d", cc++);
-		// Load OpenGL logo to be used as texture for sprite.
-		openGLTexture = new Texture("lobstercat.png");
+		m_map = new TmxMap();
+		componentFactory = new DefaultComponentFactory();
 
-		esLogMessage("Init... %d", cc++);
-		// Create new sprite, with default parameters.
-		sprite = new Sprite(0);
+		bool okay = m_map->loadMapFile("../assets/testiLevel.tmx", componentFactory);
 
-		esLogMessage("Init... %d", cc++);
-		// Load font texture. Made with font creation tool like bitmap font builder.
-		fontTexture = new Texture("Fixedsys_24_Bold.png");
+		if (okay)
+		{
+			// Move camera to middle of map.
+			m_map->getCamera()->setPosition(vec2(m_map->getWidth() / 2.0f - 0.5f, m_map->getHeight() / 2.0f - 0.5f));
+		}
 
-		esLogMessage("Init... %d", cc++);
-		// Create font clip areas (sprite sheet), from dat file and texture. Dat-file is made with bitmap font builder.
-		font = SpriteSheet::autoFindFontFromTexture(fontTexture, "Fixedsys_24_Bold.dat");
+		objectsLayer = new Layer(m_map, "Objects", 1.0f, true, false);
 
-		esLogMessage("Init... %d", cc++);
-		// Create new text-object
-		text = new Text(0, font);
+		m_map->addLayer(Map::MAPLAYER1, objectsLayer);
+
+		m_paddle = createSpriteGameObjects("../assets/paddle.png", 256.0f, 64.0f, 0, 0, 256.0f, 64.0f, true);
+
+		objectsLayer->addGameObject(m_paddle);
+
+		m_paddle->setPosition(vec2(0, 4));
+
+		m_paddle->setName("Paddle");
 
 		esLogMessage("Init... Done");
 	}
-	virtual~GameRunningState(){}
+	virtual~GameRunningState()
+	{ 
+		delete componentFactory;
+		delete m_map;
+		delete m_paddle;
+	}
+
+	GameObject* GameRunningState::createSpriteGameObjects(const std::string& bitmapFileName, float sizeX, float sizeY, int clipStartX, int clipStartY, int clipSizeX, int clipSizeY, bool isWhiteTransparentColor = false)
+	{
+		// Load texture to be used as texture for sprite.
+		Texture* texture = new Texture(bitmapFileName.c_str());
+
+		// If user wants to create texture which white coros is treated as atransparent color.
+		if (isWhiteTransparentColor)
+		{
+			// Set white to transparent. Here color values are from 0 to 255 (RGB)
+			texture->setTransparentColor(255, 255, 255);
+		}
+
+		// Create new sprite GameObject from texture.
+		GameObject* gameObject = new GameObject(0, 0);
+		SpriteComponent* sprite = new SpriteComponent(gameObject, texture);
+
+		// Resize the sprite to be correct size
+		gameObject->setSize(sizeX, sizeY);
+
+		// Specify clip area by start point and size in pixels
+		Sprite::PixelClip clip;
+		clip.topLeft.x = clipStartX;
+		clip.topLeft.y = clipStartY;
+		clip.clipSize.x = clipSizeX;
+		clip.clipSize.y = clipSizeY;
+
+		// Set pixel clip for sprite
+		sprite->getSprite()->setClip(float(texture->getWidth()), float(texture->getHeight()), clip);
+
+		// Add sprite component to game object
+		gameObject->addComponent(sprite);
+		return gameObject;
+	}
+
+	float getZoom()
+	{
+		return zoom;
+	}
+
+	void setZoom(float newZoom)
+	{
+		zoom = slm::clamp(newZoom, 0.25f, 8.0f);
+	}
 
 	virtual bool update(ESContext* ctx, float deltaTime)
 	{
-		//esLogMessage(__FUNCTION__);
-		// Update total time counter.
-		//count += deltaTime;
+		setZoom(getZoom() + getMouseWheelDelta());
 
-		// Set text.
-		text->setText("Game Running State!!");
-		text->setColor(0.5, 1.0, 0.0, 1.0);
-
-		// Clear sprite before add new dynamic sprites.
-		batch->clear();
-
-		// Add sprite. Rotate it according to total time. We need also scale font a bit (100 times, so the sprite is 100x100 pixels).
-		batch->addSprite(openGLTexture, sprite, vec2(0, 0), 0, vec2(1280, 720));
-
-		// Add text to position -400,300
-		batch->addText(fontTexture, text, vec2(-ctx->width / 3, ctx->height / 3), 0);
+		//if (getKeyState(KEY_ESCAPE) == 1)
+		//{
+		//	getApp()->setState(new MenuState(getApp()));
+		//	return true;
+		//	//return false;
+		//}
+		m_map->update(deltaTime);
 
 		return true;
+	}
+
+	void moveGameObject(GameObject paddle, float speed, float deltaTime, bool direction)
+	{
+
 	}
 	virtual void render(ESContext* ctx)
 	{
 		// Set OpenGL clear color
-		glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+		glClearColor(0.5f, 0.0f, 0.0f, 1.0f);
 
 		// Clear the color buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// Set the viewport to be full window area.
-		glViewport(0, 0, ctx->width, ctx->height);
-
-		// Set projection to identity
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-
-		// Calculate half screen size
-		float left = -0.5f*ctx->width;
-		float right = 0.5f*ctx->width;
-		float bottom = -0.5f*ctx->height;
-		float top = 0.5f*ctx->height;
-
-		// Set OpenGL orthogonal projection for screen size <esContext->width,esContext->height>
-		glOrthof(float(int(left)), float(int(right)), float(int(bottom)), float(int(top)), -1.0, 1.0f);
-
-		// Enable back face culling
-		glEnable(GL_CULL_FACE);
-		glCullFace(GL_BACK);
-
-		// Enable depth test
-		glEnable(GL_DEPTH_TEST);
-		glDepthFunc(GL_LEQUAL);
-
-		// Enable alpha blending (transparency)
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-		// Set model view matrix to identity
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
+		// Set screen size to camera.
+		m_map->getCamera()->setScreenSize(ctx->width, ctx->height, 400 / getZoom());
 
 		// Draw batched objects to screen.
-		batch->render();
+		m_map->render();
 	}
 private:
 	GameApp* m_app;
-	Ref<Map> m_map;
+	TmxMap* m_map;
+	ComponentFactory* componentFactory = 0;
+	float zoom = 1.0f;
+	GameObject* m_paddle;
+	Ref<Layer>objectsLayer;
 };
 
 #endif
