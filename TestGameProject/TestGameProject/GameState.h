@@ -13,6 +13,7 @@
 #include "SpriteSheet.h"
 #include "SpriteComponent.h"
 #include "Texture.h"
+#include "Box2D\Box2D.h"
 #include "GameApp.h"
 
 class GameApp;

@@ -11,6 +11,4 @@ Init... Done
 Object Start picked!
 Init first level
 Init... 0
-Error: Assertation failed at f:\gitrepos\gameprogramming\yam2d\engine\source\map.cpp:425: m_layers[index] == 0
-Error: [yam2d::`anonymous-namespace'::RefCounter::~RefCounter] 3425 Memory leaks detected!
-
+Error: [yam2d::FileStream::FileStream] File assets/testiLevel.tmx could not be opened

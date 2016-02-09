@@ -3,11 +3,36 @@
 
 #include "GameState.h"
 
+namespace
+{
+	class MyComponentFactory : public yam2d::DefaultComponentFactory
+	{
+	public:
+		virtual Component* createNewComponent(const std::string& type, Entity* owner, const yam2d::PropertySet& properties)
+		{
+			// TODO: Implementation... Use now default implementation instead.
+			return DefaultComponentFactory::createNewComponent(type, owner, properties);
+		}
+
+
+		virtual Entity* createNewEntity(ComponentFactory* componentFactory, const std::string& type, Entity* parent, const yam2d::PropertySet& properties)
+		{
+			// TODO: Implementation... Use now default implementation instead.
+			return DefaultComponentFactory::createNewEntity(componentFactory, type, parent, properties);
+		}
+	private:
+		Ref<Texture> m_playerTexture;
+		Ref<Texture>m_enemyTexture;
+		Map* m_map;
+
+	};
+}
+
 class GameRunningState :
 	public GameState
 {
 public:
-	GameRunningState(GameApp* app) : GameState(app)
+	GameRunningState(GameApp* app) : GameState(app), m_map(0)
 	{
 		esLogMessage("Init first level");
 		int cc = 0;
@@ -16,25 +41,27 @@ public:
 
 		esLogMessage("Init... %d", cc++);
 		m_map = new TmxMap();
-		componentFactory = new DefaultComponentFactory();
+		componentFactory = new MyComponentFactory();
 
-		bool okay = m_map->loadMapFile("../assets/testiLevel.tmx", componentFactory);
+		bool okay = m_map->loadMapFile("assets/testiLevel.tmx", componentFactory);
 
 		if (okay)
 		{
+			esLogMessage("Map load OK");
 			// Move camera to middle of map.
 			m_map->getCamera()->setPosition(vec2(m_map->getWidth() / 2.0f - 0.5f, m_map->getHeight() / 2.0f - 0.5f));
 		}
 
-		objectsLayer = new Layer(m_map, "Objects", 1.0f, true, false);
+		//objectsLayer = new Layer(m_map, "Objects", 1.0f, true, false);
 
-		m_map->addLayer(Map::MAPLAYER1, objectsLayer);
+		//m_map->addLayer(Map::MAPLAYER1, objectsLayer);
 
-		m_paddle = createSpriteGameObjects("../assets/paddle.png", 256.0f, 64.0f, 0, 0, 256.0f, 64.0f, true);
+		m_paddle = createSpriteGameObjects("assets/paddle.png", 256.0f, 64.0f, 0, 0, 256.0f, 64.0f, true);
 
-		objectsLayer->addGameObject(m_paddle);
+		
+		m_map->getLayer("Objects")->addGameObject(m_paddle);
 
-		m_paddle->setPosition(vec2(0, 4));
+		m_paddle->setPosition(vec2(m_map->getWidth()/2, 11));
 
 		m_paddle->setName("Paddle");
 
@@ -43,8 +70,15 @@ public:
 	virtual~GameRunningState()
 	{ 
 		delete componentFactory;
-		delete m_map;
-		delete m_paddle;
+		//delete m_map;
+		//delete m_paddle;
+	}
+	virtual Entity* createNewEntity(ComponentFactory* componentFactory, const std::string& type, Entity* parent, const PropertySet& properties)
+	{
+		if ("StaticColliders" == type)
+		{
+			// asd
+		}
 	}
 
 	GameObject* GameRunningState::createSpriteGameObjects(const std::string& bitmapFileName, float sizeX, float sizeY, int clipStartX, int clipStartY, int clipSizeX, int clipSizeY, bool isWhiteTransparentColor = false)
@@ -126,11 +160,10 @@ public:
 	}
 private:
 	GameApp* m_app;
-	TmxMap* m_map;
+	Ref<TmxMap>m_map = 0;
 	ComponentFactory* componentFactory = 0;
 	float zoom = 1.0f;
-	GameObject* m_paddle;
-	Ref<Layer>objectsLayer;
+	Ref<GameObject> m_paddle = 0;
 };
 
 #endif
