@@ -12,3 +12,5 @@ Object Start picked!
 Init first level
 Init... 0
 Error: [yam2d::FileStream::FileStream] File assets/testiLevel.tmx could not be opened
+Error: [yam2d::`anonymous-namespace'::RefCounter::~RefCounter] 2 Memory leaks detected!
+

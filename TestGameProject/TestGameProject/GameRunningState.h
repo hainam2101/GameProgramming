@@ -5,9 +5,21 @@
 
 namespace
 {
+	class MyComponentFactory;
+
+	TmxMap* map = 0;
+
 	class MyComponentFactory : public yam2d::DefaultComponentFactory
 	{
 	public:
+		MyComponentFactory() : DefaultComponentFactory(), m_playerTexture(), m_enemyTexture(), m_map(0)
+		{
+			m_world = new b2World(vec2(0, 9.81f));
+			m_world->SetAllowSleeping(false);
+
+			// jottai mycontactlistener scheissea???
+		}
+
 		virtual Component* createNewComponent(const std::string& type, Entity* owner, const yam2d::PropertySet& properties)
 		{
 			// TODO: Implementation... Use now default implementation instead.
@@ -24,7 +36,7 @@ namespace
 		Ref<Texture> m_playerTexture;
 		Ref<Texture>m_enemyTexture;
 		Map* m_map;
-
+		Ref<b2World> m_world;
 	};
 }
 
@@ -77,8 +89,34 @@ public:
 	{
 		if ("StaticColliders" == type)
 		{
-			// asd
+			// Create only game object, without components
+			GameObject* gameObject = new GameObject(parent, properties);
+			return gameObject;
 		}
+		else if ("Ball" == type)
+		{
+			GameObject* gameObject = new GameObject(parent, properties);
+			gameObject->addComponent(componentFactory->createNewComponent("Tile", gameObject, properties));
+			return gameObject;
+		}
+		else if ("Brick" == type)
+		{
+			GameObject* gameObject = new GameObject(parent, properties);
+			gameObject->addComponent(componentFactory->createNewComponent("Tile", gameObject, properties));
+			return gameObject;
+		}
+		else if ("PlayerPad" == type)
+		{
+			GameObject* gameObject = new GameObject(parent, properties);
+			gameObject->addComponent(componentFactory->createNewComponent("Tile", gameObject, properties));
+			return gameObject;
+		}
+
+		// default functionality
+		DefaultComponentFactory def;
+		Entity* res = def.createNewEntity(componentFactory, type, parent, properties);
+		assert(res != 0);
+		return res;
 	}
 
 	GameObject* GameRunningState::createSpriteGameObjects(const std::string& bitmapFileName, float sizeX, float sizeY, int clipStartX, int clipStartY, int clipSizeX, int clipSizeY, bool isWhiteTransparentColor = false)
