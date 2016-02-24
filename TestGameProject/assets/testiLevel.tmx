@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="12" tilewidth="64" tileheight="64" nextobjectid="57">
- <tileset firstgid="1" name="Sandels" tilewidth="64" tileheight="64" tilecount="16" columns="4">
-  <image source="Sandels.png" trans="ffffff" width="297" height="297"/>
- </tileset>
- <tileset firstgid="17" name="puppycat" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="1" name="puppycat" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="puppycat.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="18" name="wall" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+ <tileset firstgid="2" name="wall" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="wall.png" width="68" height="64"/>
  </tileset>
- <tileset firstgid="19" source="dunnolol.tsx"/>
+ <tileset firstgid="3" source="dunnolol.tsx"/>
+ <tileset firstgid="4" name="target" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="target.png" width="68" height="64"/>
+ </tileset>
  <layer name="Background" width="20" height="12">
   <data encoding="base64" compression="zlib">
-   eJwTYmBgEKIyphYYNW/UvFHz8JsHAMBxAvU=
+   eJxjYmBgYKIyphbAZh4LiXiom0cJGDVv+JsHAF+GAOU=
   </data>
  </layer>
  <objectgroup name="StaticColliders">
@@ -23,11 +23,11 @@
  </objectgroup>
  <layer name="Objects" width="20" height="12">
   <data encoding="base64" compression="zlib">
-   eJztx0sOgCAQBNHhI6KgcP/TWptZTjJbA5W8pFvkPwVEJGTH1211oOBEdXzdVhduNHTH12314MXAdHzdu3X6AFU8Ad0=
+   eJxjYBgFo2AUDFUAAAPAAAE=
   </data>
  </layer>
  <objectgroup name="DynamicObjects">
-  <object id="55" name="Ball" type="Ball" gid="17" x="511" y="703" width="64" height="64"/>
-  <object id="56" name="Paddle" type="PlayerPad" gid="19" x="383" y="769" width="256" height="64"/>
+  <object id="55" name="Ball" type="Ball" gid="1" x="511" y="703" width="64" height="64"/>
+  <object id="56" name="Paddle" type="PlayerPad" gid="3" x="383" y="769" width="256" height="64"/>
  </objectgroup>
 </map>
