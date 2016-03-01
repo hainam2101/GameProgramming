@@ -2,49 +2,13 @@
 #define GAMERUNNINGSTATE_H
 
 #include "GameState.h"
-
-namespace
-{
-	class MyComponentFactory;
-
-	TmxMap* map = 0;
-
-	class MyComponentFactory : public yam2d::DefaultComponentFactory
-	{
-	public:
-		MyComponentFactory() : DefaultComponentFactory(), m_playerTexture(), m_enemyTexture(), m_map(0)
-		{
-			m_world = new b2World(vec2(0, 9.81f));
-			m_world->SetAllowSleeping(false);
-
-			// jottai mycontactlistener scheissea???
-		}
-
-		virtual Component* createNewComponent(const std::string& type, Entity* owner, const yam2d::PropertySet& properties)
-		{
-			// TODO: Implementation... Use now default implementation instead.
-			return DefaultComponentFactory::createNewComponent(type, owner, properties);
-		}
-
-
-		virtual Entity* createNewEntity(ComponentFactory* componentFactory, const std::string& type, Entity* parent, const yam2d::PropertySet& properties)
-		{
-			// TODO: Implementation... Use now default implementation instead.
-			return DefaultComponentFactory::createNewEntity(componentFactory, type, parent, properties);
-		}
-	private:
-		Ref<Texture> m_playerTexture;
-		Ref<Texture>m_enemyTexture;
-		Map* m_map;
-		Ref<b2World> m_world;
-	};
-}
+#include "MyComponentFactory.h"
 
 class GameRunningState :
 	public GameState
 {
 public:
-	GameRunningState(GameApp* app) : GameState(app), m_map(0)
+	GameRunningState(GameApp* app) : GameState(app), m_map(0), componentFactory(0), m_paddle(0)
 	{
 		esLogMessage("Init first level");
 		int cc = 0;
@@ -85,7 +49,13 @@ public:
 		//delete m_map;
 		//delete m_paddle;
 	}
-	virtual Entity* createNewEntity(ComponentFactory* componentFactory, const std::string& type, Entity* parent, const PropertySet& properties)
+
+	Component* MyComponentFactory::createNewComponent(const std::string& type, Entity* owner, const PropertySet& properties)
+	{
+		return DefaultComponentFactory::createNewComponent(type, owner, properties);
+	}
+
+	Entity* MyComponentFactory::createNewEntity(MyComponentFactory* componentFactory, const std::string& type, Entity* parent, const PropertySet& properties)
 	{
 		if ("StaticColliders" == type)
 		{
@@ -113,7 +83,7 @@ public:
 		}
 
 		// default functionality
-		DefaultComponentFactory def;
+
 		Entity* res = def.createNewEntity(componentFactory, type, parent, properties);
 		assert(res != 0);
 		return res;
@@ -199,7 +169,8 @@ public:
 private:
 	GameApp* m_app;
 	Ref<TmxMap>m_map = 0;
-	ComponentFactory* componentFactory = 0;
+	MyComponentFactory* componentFactory;
+	DefaultComponentFactory def;
 	float zoom = 1.0f;
 	Ref<GameObject> m_paddle = 0;
 };
