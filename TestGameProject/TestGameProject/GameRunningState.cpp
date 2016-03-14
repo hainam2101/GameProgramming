@@ -1,4 +1,5 @@
 #include "GameRunningState.h"
+#include "MenuState.h"
 
 GameRunningState::GameRunningState(GameApp* app) : GameState(app), m_tmap(0), m_componentFactory(0), m_gameObject(0)
 {

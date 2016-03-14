@@ -31,7 +31,7 @@ public:
 		GameObject* startButtonObject = createSpriteGameObject("buttons.png", tileSize.x, tileSize.y, 0, 0, 242, 96, true);
 		Objects->addGameObject(startButtonObject);
 		startButtonObject->setPosition(0.0, 2);
-		startButtonObject->setSize(tileSize.x / 1.5, tileSize.y / 1.5);
+		startButtonObject->setSize(tileSize.x / 1.5f, tileSize.y / 1.5f);
 		startButtonObject->setName("Start");
 
 		GameObject* exitButtonObject = createSpriteGameObject("buttons.png", tileSize.x, tileSize.y, 242, 0, 242, 96, true);
@@ -137,7 +137,6 @@ public:
 		{
 			m_map->update(deltaTime);
 		}
-		return 0;
 	}
 
 	virtual void render(ESContext* ctx)

@@ -2,7 +2,6 @@
 #define GAMERUNNINGSTATE_H
 
 #include "GameState.h"
-#include "MenuState.h"
 #include "MyGameComponentFactory.h"
 #include <iostream>
 
