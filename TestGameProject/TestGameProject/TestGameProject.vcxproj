@@ -84,9 +84,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BallController.cpp" />
     <ClCompile Include="GameApp.cpp" />
+    <ClCompile Include="GameRunningState.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MyComponentFactory.cpp" />
+    <ClCompile Include="MyGameComponentFactory.cpp" />
+    <ClCompile Include="PlayerController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\yam2d\engine\build\win32_vs13\yam2d.vcxproj">
@@ -94,11 +97,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BallController.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="GameRunningState.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="MenuState.h" />
-    <ClInclude Include="MyComponentFactory.h" />
+    <ClInclude Include="MyGameComponentFactory.h" />
+    <ClInclude Include="PlayerController.h" />
     <ClInclude Include="SplashScreenState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

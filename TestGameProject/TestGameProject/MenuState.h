@@ -136,10 +136,8 @@ public:
 		else
 		{
 			m_map->update(deltaTime);
-
 		}
-
-
+		return 0;
 	}
 
 	virtual void render(ESContext* ctx)
