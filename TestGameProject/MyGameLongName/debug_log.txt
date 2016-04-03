@@ -1,0 +1,9 @@
+SplashScreenState::SplashScreenState
+Init... 0
+Init... 1
+init... 2
+Init... 3
+Init... Done
+MenuState::MenuState
+Init... Done
+Object Exit picked!

@@ -1,0 +1,10 @@
+﻿  GameRunningState.cpp
+f:\gitrepos\gameprogramming\testgameproject\mygamelongname\gamerunningstate.cpp(40): warning C4018: '<' : signed/unsigned mismatch
+f:\gitrepos\gameprogramming\testgameproject\mygamelongname\gamerunningstate.cpp(86): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+f:\gitrepos\gameprogramming\testgameproject\mygamelongname\menustate.h(139): warning C4715: 'MenuState::update' : not all control paths return a value
+  Compiling...
+  main.cpp
+  Generating Code...
+f:\gitrepos\gameprogramming\testgameproject\mygamelongname\menustate.h(139): warning C4715: 'MenuState::update' : not all control paths return a value
+  MyGameLongName.vcxproj -> F:\GitRepos\GameProgramming\TestGameProject\Debug\MyGameLongName.exe
