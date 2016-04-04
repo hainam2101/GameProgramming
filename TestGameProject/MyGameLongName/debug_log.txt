@@ -4,4 +4,8 @@ Init... 1
 init... 2
 Init... 3
 Init... Done
-Exit pressed!
+Start pressed!
+Initializing Level 1!
+Error: [yam2d::TmxMap::loadMapFile] Map file: ../assets/level.tmx could not be found!
+Error: [yam2d::`anonymous-namespace'::RefCounter::~RefCounter] 1 Memory leaks detected!
+

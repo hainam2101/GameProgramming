@@ -4,7 +4,7 @@
 MainMenuState::MainMenuState(GameApp* app) : GameState(app), m_app(app), m_map(0), backgroundLayer(0), objectsLayer(0)
 {
 	// Tile size
-	vec2 tileSize(242.0f, 96.0f);
+	vec2 tileSize(64.0f, 64.0f);
 
 	// Create new map, with width == tile, heigh == 32pixels/tile
 	m_map = new Map(tileSize.x, tileSize.y);
@@ -26,24 +26,19 @@ MainMenuState::MainMenuState(GameApp* app) : GameState(app), m_app(app), m_map(0
 	m_map->addLayer(Map::MAPLAYER0, objectsLayer);
 
 	// Create new start button object, and clip it, white color shall be transparent
-	GameObject* startButtonObject = createSpriteGameObject("../assets/buttons.png", tileSize.x, tileSize.y, 0, 0, 242, 96, false);
+	GameObject* startButtonObject = createSpriteGameObject("../assets/buttons.png", 242.0f, 96.0f, 0, 0, 242, 96, false);
 
 	// Add start button to level
 	objectsLayer->addGameObject(startButtonObject);
-	// Set button size
-	//startButtonObject->setSize(tileSize.x / 2.0, tileSize.y / 2.0);
 
 	// Set Start button position
-	startButtonObject->setPosition(-1.5f, 1.5f);
-	
-	// Set button size
-	startButtonObject->setSize(tileSize.x / 1.5f, tileSize.y / 1.5f);
+	startButtonObject->setPosition(-6.0f, 2.0f);
 	
 	// Set button name
 	startButtonObject->setName("Start");
 
 	// Create new start button object, and clip it, white color shall be transparent
-	GameObject* exitButtonObject = createSpriteGameObject("../assets/buttons.png", tileSize.x, tileSize.y, 242, 0, 242, 96, false);
+	GameObject* exitButtonObject = createSpriteGameObject("../assets/buttons.png", 242.0f, 96.0f, 242, 0, 242, 96, false);
 
 	// Add exit button to level
 	objectsLayer->addGameObject(exitButtonObject);
@@ -52,10 +47,7 @@ MainMenuState::MainMenuState(GameApp* app) : GameState(app), m_app(app), m_map(0
 	//exitButtonObject->setSize(tileSize.x / 2.0, tileSize.y / 2.0);
 
 	// Set exit button position
-	exitButtonObject->setPosition(-1.5f, 3);
-
-	// Set button size
-	exitButtonObject->setSize(tileSize.x / 2, tileSize.y / 2);
+	exitButtonObject->setPosition(-6.0f, 4.5f);
 
 	// Setting object names
 	exitButtonObject->setName("Exit");
@@ -168,7 +160,7 @@ void MainMenuState::render(ESContext* ctx)
 	glClear(GL_COLOR_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
 	// Set screen size to camera.
-	m_map->getCamera()->setScreenSize(ctx->width, ctx->height, 720, 1280.0f / 720.0f);
+	m_map->getCamera()->setScreenSize(ctx->width, ctx->height);
 
 	// Render map and all of its layers containing GameObjects to screen.
 	m_map->render();
