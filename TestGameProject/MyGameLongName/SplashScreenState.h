@@ -1,7 +1,7 @@
 #ifndef SPLASHSCREENSTATE_H
 #define SLASHSCREENSTATE_H
 #include "GameState.h"
-#include "MenuState.h"
+#include "MainMenuState.h"
 
 class SplashScreenState : public GameState
 {
@@ -60,7 +60,7 @@ public:
 
 		if (m_totalTime > 5.0f)
 		{
-			getApp()->setState(new MenuState(getApp()));
+			getApp()->setState(new MainMenuState(getApp()));
 			return true;
 		}
 		return true;

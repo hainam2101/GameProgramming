@@ -1,5 +1,5 @@
 #include "GameRunningState.h"
-#include "MenuState.h"
+#include "MainMenuState.h"
 
 GameRunningState::GameRunningState(GameApp* app) : GameState(app), m_tmap(0), m_componentFactory(0), m_gameObject(0)
 {
@@ -33,7 +33,7 @@ bool GameRunningState::update(ESContext* ctx, float deltaTime)
 
 	if (getKeyState(KEY_ESCAPE) == 1)
 	{
-		getApp()->setState(new MenuState(getApp()));
+		getApp()->setState(new MainMenuState(getApp()));
 		return true;
 	}
 	slm::vec2 plaa = slm::vec2(0.0f);
