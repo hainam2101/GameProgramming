@@ -14,6 +14,8 @@ public:
 
 	virtual void update(float deltaTime);
 
+	void checkCollision(GameObject* objects, float deltaTime);
+
 	GameObject* getGameObject()
 	{
 		return (GameObject*)getOwner();
@@ -28,5 +30,7 @@ public:
 private:
 	bool movement = false;
 	vec2 position;
+	float velocity;
+	float moveSpeed;
 	//vec2 direction;
 };

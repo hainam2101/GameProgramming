@@ -7,4 +7,3 @@ Init... Done
 Start pressed!
 Initializing Level 1!
 Deinit
-Exit pressed!
