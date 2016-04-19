@@ -47,26 +47,26 @@ bool GameRunningState::update(ESContext* ctx, float deltaTime)
 
 
 
-	// Read mouse values
-	if (getKeyState(KEY_A))
-	{
-		mouseX -= 0.01f;
-	}
-	if (getKeyState(KEY_D))
-	{
-		mouseX += 0.01f;
-	}
-	if (getKeyState(KEY_W))
-	{
-		mouseY -= 0.01f;
-	}
-	if (getKeyState(KEY_S))
-	{
-		mouseY += 0.01f;
-	}
+	//// Read mouse values
+	//if (getKeyState(KEY_A))
+	//{
+	//	mouseX -= 0.01f;
+	//}
+	//if (getKeyState(KEY_D))
+	//{
+	//	mouseX += 0.01f;
+	//}
+	//if (getKeyState(KEY_W))
+	//{
+	//	mouseY -= 0.01f;
+	//}
+	//if (getKeyState(KEY_S))
+	//{
+	//	mouseY += 0.01f;
+	//}
 
-	slm::vec2 plaa2 = slm::vec2(mouseX, mouseY);
-	m_tmap->findGameObjectByName("Ball")->getComponent<BallController>()->setPositionToMouse(plaa2);
+	//slm::vec2 plaa2 = slm::vec2(mouseX, mouseY);
+	//m_tmap->findGameObjectByName("Ball")->getComponent<BallController>()->setPositionToMouse(plaa2);
 
 
 	m_tmap->update(deltaTime);

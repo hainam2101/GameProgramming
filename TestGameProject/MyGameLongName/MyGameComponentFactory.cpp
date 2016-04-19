@@ -33,13 +33,23 @@ Entity* MyGameComponentFactory::createNewEntity(ComponentFactory* m_componentFac
 		m_gameObject->addComponent(m_componentFactory->createNewComponent("Tile", m_gameObject, properties));
 		return m_gameObject;
 	}
-	else if ("PlayerPad" == type)
+	else if ("Player1Pad" == type)
 	{
 		m_gameObject = new GameObject(parent, properties);
 		m_gameObject->addComponent(m_componentFactory->createNewComponent("Tile", m_gameObject, properties));
-		PlayerController* playerController = new PlayerController(m_gameObject);
-		m_gameObject->addComponent(playerController);
-		m_gameObject->setName("PlayerPad");
+		Player1Controller* player1Controller = new Player1Controller(m_gameObject);
+		m_gameObject->addComponent(player1Controller);
+		m_gameObject->setName("Player1Pad");
+		return m_gameObject;
+	}
+
+	else if ("Player2Pad" == type)
+	{
+		m_gameObject = new GameObject(parent, properties);
+		m_gameObject->addComponent(m_componentFactory->createNewComponent("Tile", m_gameObject, properties));
+		Player2Controller* player2Controller = new Player2Controller(m_gameObject);
+		m_gameObject->addComponent(player2Controller);
+		m_gameObject->setName("Player2Pad");
 		return m_gameObject;
 	}
 

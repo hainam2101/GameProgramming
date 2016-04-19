@@ -3,19 +3,16 @@
 BallController::BallController(GameObject* owner)
 	: Component(owner, Component::getDefaultProperties())
 {
-
+	position = vec2(9, 5);
 }
 
 void BallController::update(float deltaTime)
 {
 	// Set movespeed for the ball
 	// Tiles / second
-	float moveSpeed = 1.0f;
+	float moveSpeed = 0.3f;
 	float velocity = 0.001f;
 
-	// 
-	vec2 direction;
-	vec2 position = vec2(3.0f, -1.0f);
 	if (getKeyState(KEY_SPACE) && !movement)
 	{
 		movement = true;
@@ -31,7 +28,7 @@ void BallController::update(float deltaTime)
 	if (getKeyState(KEY_RETURN))
 	{
 		movement = false;
-		return getGameObject()->setPosition(9, 10); // Positions are 64x64 tiels
+		return getGameObject()->setPosition(9, 5); // Positions are 64x64 tiels
 	}
 
 }

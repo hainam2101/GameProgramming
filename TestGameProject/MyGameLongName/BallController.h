@@ -27,4 +27,6 @@ public:
 
 private:
 	bool movement = false;
+	vec2 position;
+	//vec2 direction;
 };
