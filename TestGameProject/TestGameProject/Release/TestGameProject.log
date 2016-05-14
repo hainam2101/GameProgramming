@@ -1,0 +1,5 @@
+﻿  Generating code
+f:\gitrepos\gameprogramming\yam2d\engine\source\filestream.cpp(60): warning C4702: unreachable code
+f:\gitrepos\gameprogramming\testgameproject\testgameproject\menustate.h(140): warning C4715: 'MenuState::update' : not all control paths return a value
+  Finished generating code
+  TestGameProject.vcxproj -> F:\GitRepos\GameProgramming\TestGameProject\Release\TestGameProject.exe
