@@ -3,6 +3,8 @@
 #include "SpriteComponent.h"
 #include "GameObject.h"
 #include "Input.h"
+#include "Player1Controller.h"
+#include "Player2Controller.h"
 
 using namespace yam2d;
 
@@ -16,6 +18,10 @@ public:
 
 	void checkCollision(GameObject* objects, float deltaTime);
 
+	void addBallObjects(GameObject* ball);
+
+	void spawnBalls(GameObject* ball);
+
 	GameObject* getGameObject()
 	{
 		return (GameObject*)getOwner();
@@ -24,13 +30,16 @@ public:
 	{
 		return (const GameObject*)getOwner();
 	}
-
-	void setPositionToMouse(slm::vec2 posMouse){ getGameObject()->setPosition(posMouse); }
-
+	
+	std::vector<GameObject*> getBallVector(){ return balls; }
 private:
+	int activeBalls;
 	bool movement = false;
 	vec2 position;
 	float velocity;
 	float moveSpeed;
-	//vec2 direction;
+	Player1Controller p1();
+	Player2Controller p2();
+	std::vector<GameObject*> balls;
+	std::vector<GameObject*>::iterator it;
 };

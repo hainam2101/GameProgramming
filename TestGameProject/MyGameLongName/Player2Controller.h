@@ -22,8 +22,12 @@ public:
 	{
 		return (const GameObject*)getOwner();
 	}
-
+	void setBallIsColliding(bool state)
+	{
+		ballIsColliding = state;
+	}
+	
 private:
-
+	bool ballIsColliding;
 };
 

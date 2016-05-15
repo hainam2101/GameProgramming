@@ -3,6 +3,7 @@
 Player1Controller::Player1Controller(GameObject* owner)
 	: Component(owner, Component::getDefaultProperties())
 {
+	ballIsColliding = false;
 }
 
 Player1Controller::~Player1Controller(void)
@@ -23,5 +24,13 @@ void Player1Controller::update(float deltaTime)
 	if (getKeyState(KEY_RIGHT) && getGameObject()->getPosition().x<17.0f)
 	{
 		getGameObject()->setPosition(getGameObject()->getPosition() + deltaTime*moveSpeed*vec2(1.0f, 0.0f));
+	}
+	
+	if (getKeyState(KEY_NUMPAD0) && ballIsColliding == true)
+	{
+		// Hold on to balls
+		do{
+
+		} while (getKeyState(KEY_NUMPAD0));
 	}
 }
