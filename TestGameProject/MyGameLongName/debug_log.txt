@@ -6,4 +6,6 @@ Init... 3
 Init... Done
 Start pressed!
 Initializing Level 1!
+Map loading okay!
 Deinit
+Exit pressed!

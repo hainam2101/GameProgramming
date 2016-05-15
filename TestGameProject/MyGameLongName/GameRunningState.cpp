@@ -16,8 +16,6 @@ GameRunningState::GameRunningState(GameApp* app) : GameState(app), m_tmap(0), m_
 	}
 }
 
-
-
 float GameRunningState::getZoom()
 {
 	return zoom;
@@ -30,7 +28,7 @@ void GameRunningState::setZoom(float newZoom)
 
 bool GameRunningState::update(ESContext* ctx, float deltaTime)
 {
-	//setZoom(getZoom() + getMouseWheelDelta());
+	setZoom(getZoom() + getMouseWheelDelta());
 
 	if (getKeyState(KEY_ESCAPE) == 1)
 	{

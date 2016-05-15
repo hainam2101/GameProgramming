@@ -42,7 +42,6 @@ public:
 	}
 	virtual void render(ESContext* ctx)
 	{
-
 	}
 	
 	GameApp* getApp(){ return m_app; };

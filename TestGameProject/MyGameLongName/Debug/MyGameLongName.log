@@ -1,2 +1,14 @@
-﻿  BallController.cpp
+﻿  Player1Controller.cpp
+  Player2Controller.cpp
+  MyGameComponentFactory.cpp
+  MainMenuState.cpp
+  main.cpp
+  GameRunningState.cpp
+f:\gitrepos\gameprogramming\testgameproject\mygamelongname\gamerunningstate.cpp(42): warning C4018: '<' : signed/unsigned mismatch
+f:\gitrepos\gameprogramming\testgameproject\mygamelongname\gamerunningstate.cpp(51): warning C4018: '<' : signed/unsigned mismatch
+f:\gitrepos\gameprogramming\testgameproject\mygamelongname\gamerunningstate.cpp(74): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+  GameApp.cpp
+  BallController.cpp
+  Generating Code...
+f:\gitrepos\gameprogramming\testgameproject\mygamelongname\mainmenustate.cpp(152): warning C4715: 'MainMenuState::update' : not all control paths return a value
   MyGameLongName.vcxproj -> F:\GitRepos\GameProgramming\TestGameProject\Debug\MyGameLongName.exe

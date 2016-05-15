@@ -1,5 +1,13 @@
-﻿  Generating code
-f:\gitrepos\gameprogramming\yam2d\engine\source\filestream.cpp(60): warning C4702: unreachable code
+﻿  BallController.cpp
+  GameApp.cpp
+  GameRunningState.cpp
+GameRunningState.cpp(40): warning C4018: '<' : signed/unsigned mismatch
+GameRunningState.cpp(86): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+  main.cpp
+f:\gitrepos\gameprogramming\testgameproject\testgameproject\SplashScreenState.h(56): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+  MyGameComponentFactory.cpp
+  PlayerController.cpp
+  Generating code
 f:\gitrepos\gameprogramming\testgameproject\testgameproject\menustate.h(140): warning C4715: 'MenuState::update' : not all control paths return a value
   Finished generating code
   TestGameProject.vcxproj -> F:\GitRepos\GameProgramming\TestGameProject\Release\TestGameProject.exe

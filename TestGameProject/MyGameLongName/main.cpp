@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 	
 	ESContext esContext;
 	esInitContext(&esContext);
-	esCreateWindow(&esContext, "MenuTesti", 1280, 720, ES_WINDOW_DEFAULT);
+	esCreateWindow(&esContext, "MyGameLongName", 1280, 720, ES_WINDOW_DEFAULT);
 
 
 	esRegisterInitFunc(&esContext, init);
