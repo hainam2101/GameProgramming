@@ -31,9 +31,18 @@ public:
 		return (const GameObject*)getOwner();
 	}
 	
-	std::vector<GameObject*> getBallVector(){ return balls; }
+	std::vector<GameObject*> getBallVector()
+	{ 
+		return balls; 
+	}
+
+	BallController * clone() const
+	{
+		return new BallController(*this);
+	}
 private:
 	int activeBalls;
+	float timeSinceLastSpawn;
 	bool movement = false;
 	vec2 position;
 	float velocity;

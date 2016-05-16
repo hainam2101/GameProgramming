@@ -4,45 +4,31 @@ BallController::BallController(GameObject* owner)
 	: Component(owner, Component::getDefaultProperties())
 {
 	activeBalls = 0;
-	movement = true;
-	position = vec2(11, 10);
-	moveSpeed = 0.3f;
+	timeSinceLastSpawn = 0.0f;
+	position = vec2(0, 0);
+	moveSpeed = 0.1f;
 	velocity = 1.1f;
 }
 
 void BallController::update(float deltaTime)
 {
-	//printf_s("DeltaTime: %d\n", deltaTime);
-	for (int i = 0; i < balls.size(); i++)
+	if (timeSinceLastSpawn >= 5.0f)
 	{
-		if (deltaTime >= 0.03f)
-		{
-			esLogMessage("Spawning a new ball!");
-			spawnBalls(balls.front() + activeBalls);
-			//deltaTime = 0.0f;
-		}
-		// Set movespeed for the ball
-		// Tiles / second
+		esLogMessage("Spawning a new ball, active balls: %d", activeBalls);
+		spawnBalls(balls.front() + activeBalls);
+		timeSinceLastSpawn = 0.0f;
+	}
 
-		if (getKeyState(KEY_SPACE) && !movement)
+	if (activeBalls >= 1)
+	{
+		for (it = balls.begin(); it != balls.end(); it++)
 		{
-			movement = true;
-		}
-
-		if (movement == true)
-		{
-			getGameObject()->setPosition(getGameObject()->getPosition() + deltaTime*moveSpeed*position);
-
-		}
-
-		// Returns ball position where it was first
-		if (getKeyState(KEY_R))
-		{
-			moveSpeed = 0.3f;
-			movement = false;
-			return getGameObject()->setPosition(11, 10); // Positions are 64x64 tiels
+			(*it)->setPosition((*it)->getPosition() + deltaTime * moveSpeed * position);
 		}
 	}
+		getGameObject()->setPosition(getGameObject()->getPosition() + deltaTime*moveSpeed*position);
+
+	timeSinceLastSpawn += deltaTime;
 }
 
 void BallController::checkCollision(GameObject* objects, float deltaTime)
@@ -93,5 +79,5 @@ void BallController::addBallObjects(GameObject* ball)
 
 BallController::~BallController()
 {
-
+	balls.clear();
 }

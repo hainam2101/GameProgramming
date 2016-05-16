@@ -1,13 +1,1 @@
-﻿  PlayerController.cpp
-  MyGameComponentFactory.cpp
-  main.cpp
-f:\gitrepos\gameprogramming\testgameproject\testgameproject\splashscreenstate.h(56): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-  GameRunningState.cpp
-f:\gitrepos\gameprogramming\testgameproject\testgameproject\gamerunningstate.cpp(40): warning C4018: '<' : signed/unsigned mismatch
-f:\gitrepos\gameprogramming\testgameproject\testgameproject\gamerunningstate.cpp(86): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-  GameApp.cpp
-  BallController.cpp
-  Generating Code...
-f:\gitrepos\gameprogramming\testgameproject\testgameproject\menustate.h(140): warning C4715: 'MenuState::update' : not all control paths return a value
-f:\gitrepos\gameprogramming\testgameproject\testgameproject\menustate.h(140): warning C4715: 'MenuState::update' : not all control paths return a value
-  TestGameProject.vcxproj -> F:\GitRepos\GameProgramming\TestGameProject\Debug\TestGameProject.exe
+﻿  TestGameProject.vcxproj -> F:\GitRepos\GameProgramming\TestGameProject\Debug\TestGameProject.exe

@@ -20,14 +20,15 @@ Entity* MyGameComponentFactory::createNewEntity(ComponentFactory* m_componentFac
 	}
 	else if ("Ball" == type)
 	{
+		m_gameObject = new GameObject(parent, properties);
+		m_gameObject->addComponent(m_componentFactory->createNewComponent("Tile", m_gameObject, properties));
+		BallController *ballController = new BallController(m_gameObject);
+		m_gameObject->addComponent(ballController);
+		m_gameObject->setName("Ball");
 		for (int i = 0; i < 10; i++)
 		{ 
-			m_gameObject = new GameObject(parent, properties);
-			m_gameObject->addComponent(m_componentFactory->createNewComponent("Tile", m_gameObject, properties));
-			BallController* ballController = new BallController(m_gameObject);
-			m_gameObject->addComponent(ballController);
-			m_gameObject->setName("Ball");
-			ballController->addBallObjects(m_gameObject);
+			BallController* newBall = ballController->clone();
+			newBall->addBallObjects(m_gameObject);
 		}
 		return m_gameObject;
 	}

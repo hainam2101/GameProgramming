@@ -1,3 +1,32 @@
-﻿  BallController.cpp
-f:\gitrepos\gameprogramming\testgameproject\mygamelongname\ballcontroller.cpp(16): warning C4018: '<' : signed/unsigned mismatch
-  MyGameLongName.vcxproj -> F:\GitRepos\GameProgramming\TestGameProject\Debug\MyGameLongName.exe
+﻿  Player1Controller.cpp
+  Player2Controller.cpp
+  MyGameComponentFactory.cpp
+f:\gitrepos\gameprogramming\yam2d\engine\include\entity.h(150): error C2248: 'yam2d::Object::Object' : cannot access private member declared in class 'yam2d::Object'
+          f:\gitrepos\gameprogramming\yam2d\engine\include\object.h(89) : see declaration of 'yam2d::Object::Object'
+          f:\gitrepos\gameprogramming\yam2d\engine\include\object.h(43) : see declaration of 'yam2d::Object'
+          This diagnostic occurred in the compiler generated function 'yam2d::Component::Component(const yam2d::Component &)'
+  MainMenuState.cpp
+f:\gitrepos\gameprogramming\yam2d\engine\include\entity.h(150): error C2248: 'yam2d::Object::Object' : cannot access private member declared in class 'yam2d::Object'
+          f:\gitrepos\gameprogramming\yam2d\engine\include\object.h(89) : see declaration of 'yam2d::Object::Object'
+          f:\gitrepos\gameprogramming\yam2d\engine\include\object.h(43) : see declaration of 'yam2d::Object'
+          This diagnostic occurred in the compiler generated function 'yam2d::Component::Component(const yam2d::Component &)'
+  main.cpp
+f:\gitrepos\gameprogramming\yam2d\engine\include\entity.h(150): error C2248: 'yam2d::Object::Object' : cannot access private member declared in class 'yam2d::Object'
+          f:\gitrepos\gameprogramming\yam2d\engine\include\object.h(89) : see declaration of 'yam2d::Object::Object'
+          f:\gitrepos\gameprogramming\yam2d\engine\include\object.h(43) : see declaration of 'yam2d::Object'
+          This diagnostic occurred in the compiler generated function 'yam2d::Component::Component(const yam2d::Component &)'
+  GameRunningState.cpp
+f:\gitrepos\gameprogramming\yam2d\engine\include\entity.h(150): error C2248: 'yam2d::Object::Object' : cannot access private member declared in class 'yam2d::Object'
+          f:\gitrepos\gameprogramming\yam2d\engine\include\object.h(89) : see declaration of 'yam2d::Object::Object'
+          f:\gitrepos\gameprogramming\yam2d\engine\include\object.h(43) : see declaration of 'yam2d::Object'
+          This diagnostic occurred in the compiler generated function 'yam2d::Component::Component(const yam2d::Component &)'
+f:\gitrepos\gameprogramming\testgameproject\mygamelongname\gamerunningstate.cpp(44): warning C4018: '<' : signed/unsigned mismatch
+f:\gitrepos\gameprogramming\testgameproject\mygamelongname\gamerunningstate.cpp(54): warning C4018: '<' : signed/unsigned mismatch
+f:\gitrepos\gameprogramming\testgameproject\mygamelongname\gamerunningstate.cpp(79): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+  GameApp.cpp
+  BallController.cpp
+f:\gitrepos\gameprogramming\yam2d\engine\include\entity.h(150): error C2248: 'yam2d::Object::Object' : cannot access private member declared in class 'yam2d::Object'
+          f:\gitrepos\gameprogramming\yam2d\engine\include\object.h(89) : see declaration of 'yam2d::Object::Object'
+          f:\gitrepos\gameprogramming\yam2d\engine\include\object.h(43) : see declaration of 'yam2d::Object'
+          This diagnostic occurred in the compiler generated function 'yam2d::Component::Component(const yam2d::Component &)'
+  Generating Code...

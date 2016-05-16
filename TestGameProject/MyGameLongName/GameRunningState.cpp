@@ -35,26 +35,29 @@ bool GameRunningState::update(ESContext* ctx, float deltaTime)
 		getApp()->setState(new MainMenuState(getApp()));
 		return true;
 	}
-
-	for (auto balls : ball->getBallVector())
+	std::vector<GameObject*> ballVec = ball->getBallVector();
+	std::vector<GameObject*>::iterator it;
+	for (it = ballVec.begin(); it != ballVec.end(); it++)
 	{
 		slm::vec2 plaa = slm::vec2(0.0f);
 		// Check if colliding with StaticColliders
 		for (int i = 0; i < m_tmap->getLayer("StaticColliders")->getGameObjects().size(); i++)
 		{
-			if (m_tmap->findGameObjectByName("Ball")->collidesTo(m_tmap->getLayer("StaticColliders")->getGameObjects()[i], &plaa))
+			if ((*it)->collidesTo(m_tmap->getLayer("StaticColliders")->getGameObjects()[i], &plaa))
 			{
 				std::cout << plaa.x << " " << plaa.y << std::endl;
-				m_tmap->findGameObjectByName("Ball")->getComponent<BallController>()->checkCollision(m_tmap->getLayer("StaticColliders")->getGameObjects()[i], deltaTime);
+				m_tmap->findGameObjectByName("Ball")->getComponent<BallController>()
+					->checkCollision(m_tmap->getLayer("StaticColliders")->getGameObjects()[i], deltaTime);
 			}
 		}
 		// Check if colliding with DynamicObjects
 		for (int i = 0; i < m_tmap->getLayer("DynamicObjects")->getGameObjects().size(); i++)
 		{
-			if (m_tmap->findGameObjectByName("Ball")->collidesTo(m_tmap->getLayer("DynamicObjects")->getGameObjects()[i], &plaa))
+			if ((*it)->collidesTo(m_tmap->getLayer("DynamicObjects")->getGameObjects()[i], &plaa))
 			{
 				std::cout << plaa.x << " " << plaa.y << std::endl;
-				m_tmap->findGameObjectByName("Ball")->getComponent<BallController>()->checkCollision(m_tmap->getLayer("DynamicObjects")->getGameObjects()[i], deltaTime);
+				m_tmap->findGameObjectByName("Ball")->getComponent<BallController>()
+					->checkCollision(m_tmap->getLayer("DynamicObjects")->getGameObjects()[i], deltaTime);
 			}
 		}
 
@@ -83,5 +86,6 @@ GameRunningState::~GameRunningState()
 {
 	// Delete game stuff
 	esLogMessage("Deinit");
+	delete ball;
 	delete m_componentFactory;
 }
