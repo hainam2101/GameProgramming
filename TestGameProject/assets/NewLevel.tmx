@@ -10,14 +10,14 @@
   </data>
  </layer>
  <objectgroup name="DynamicObjects">
-  <object id="20" name="Player1Pad" type="Player1Pad" gid="4" x="321" y="700" width="160" height="32"/>
-  <object id="21" name="Player2Pad" type="Player2Pad" gid="1" x="288" y="35" width="159" height="32"/>
+  <object id="20" name="Player1Pad" type="Player1Pad" gid="4" x="319" y="704" width="160" height="32"/>
+  <object id="21" name="Player2Pad" type="Player2Pad" gid="1" x="322" y="35" width="159" height="32"/>
   <object id="23" name="Ball" type="Ball" gid="19" x="352" y="288" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="StaticColliders">
-  <object id="12" name="LeftWall" type="StaticColliders" x="-0.869565" y="-0.869565" width="65.2174" height="705.217"/>
-  <object id="13" name="RightWall" type="StaticColliders" x="702.609" y="0" width="64.3478" height="705.217"/>
-  <object id="14" name="Bottom" type="StaticColliders" x="-1" y="702" width="773" height="15"/>
-  <object id="15" name="Top" type="StaticColliders" x="0" y="-7" width="764" height="10"/>
+  <object id="12" name="LeftWall" type="StaticColliders" x="36" y="-0.869565" width="28.3478" height="705.217"/>
+  <object id="13" name="RightWall" type="StaticColliders" x="702.609" y="0" width="35.391" height="705.217"/>
+  <object id="14" name="Bottom" type="StaticColliders" x="-3" y="711" width="773" height="15"/>
+  <object id="15" name="Top" type="StaticColliders" x="-1" y="-17" width="764" height="10"/>
  </objectgroup>
 </map>

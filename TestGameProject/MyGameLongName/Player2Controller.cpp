@@ -29,8 +29,8 @@ void Player2Controller::update(float deltaTime)
 	if (getKeyState(KEY_SPACE) && ballIsColliding == true)
 	{
 		// Hold on to balls
-		do{
+		//do{
 
-		} while (getKeyState(KEY_SPACE));
+		//} while (getKeyState(KEY_SPACE));
 	}
 }

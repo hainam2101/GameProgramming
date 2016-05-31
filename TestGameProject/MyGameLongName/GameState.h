@@ -28,6 +28,7 @@ protected:
 
 	Ref<Texture>openGLTexture = 0;
 	Ref<Text>text = 0;
+	Ref<Text>text2 = 0;
 	Ref<Texture>fontTexture = 0;
 	Ref<Sprite>sprite = 0;
 	Ref<SpriteBatchGroup>batch = 0;

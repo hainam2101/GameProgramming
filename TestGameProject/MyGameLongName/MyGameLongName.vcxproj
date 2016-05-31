@@ -72,6 +72,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BallController.h" />
+    <ClInclude Include="EndScreenState.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="GameRunningState.h" />
     <ClInclude Include="GameState.h" />

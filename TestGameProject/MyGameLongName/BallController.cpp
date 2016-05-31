@@ -3,81 +3,82 @@
 BallController::BallController(GameObject* owner)
 	: Component(owner, Component::getDefaultProperties())
 {
-	activeBalls = 0;
-	timeSinceLastSpawn = 0.0f;
-	position = vec2(0, 0);
-	moveSpeed = 0.1f;
-	velocity = 1.1f;
+	p1Score = 0;
+	p2Score = 0;
+
+	angle = slm::radians(rand() % 90 + 315);
+	direction.x = cosf(angle);
+	direction.y = sinf(angle);
+
+	if ((rand() % 100) < 50)
+	{
+		direction.x *= -1;
+	}
+
+	position = vec2(11, 10);
+	moveSpeed = 0.4f;
 }
 
 void BallController::update(float deltaTime)
 {
-	if (timeSinceLastSpawn >= 5.0f)
-	{
-		esLogMessage("Spawning a new ball, active balls: %d", activeBalls);
-		spawnBalls(balls.front() + activeBalls);
-		timeSinceLastSpawn = 0.0f;
-	}
+	getGameObject()->setPosition(getGameObject()->getPosition() + deltaTime*moveSpeed*direction*position);
 
-	if (activeBalls >= 1)
+
+	// Returns ball position where it was first
+	if (getKeyState(KEY_RETURN))
 	{
-		for (it = balls.begin(); it != balls.end(); it++)
+		float angle = slm::radians(rand() % 90 + 315);
+		direction.x = cosf(angle);
+		direction.y = sinf(angle);
+
+		if ((rand() % 100) < 50)
 		{
-			(*it)->setPosition((*it)->getPosition() + deltaTime * moveSpeed * position);
+			direction.x *= -1;
 		}
+		moveSpeed = 0.3f;
+		return getGameObject()->setPosition(11, 10); // Positions are 64x64 tiels
 	}
-		getGameObject()->setPosition(getGameObject()->getPosition() + deltaTime*moveSpeed*position);
 
-	timeSinceLastSpawn += deltaTime;
 }
 
 void BallController::checkCollision(GameObject* objects, float deltaTime)
 {
 
-	if (movement)
+	// React to left and right walls
+	if (objects->getName() == "LeftWall" || objects->getName() == "RightWall")
 	{
-		// React to left and right walls
-		if (objects->getName() == "LeftWall" || objects->getName() == "RightWall")
-		{
-			position.x *= -1.0f;
-			moveSpeed *= velocity;
-		}
-		// React to top and bottom borders
-		if (objects->getName() == "Top" || objects->getName() == "Bottom")
-		{
-			//balls.erase(balls.begin(), balls.begin()+i);
-			objects->setPosition(3, 3);
-			activeBalls--;
-		}
-		// React to player pads
-		if (objects->getName() == "Player1Pad")
-		{
-			//p1.setBallIsColliding(true);
-			position.y *= -1.0f;
-			moveSpeed *= velocity;
-		}
-		if (objects->getName() == "Player2Pad")
-		{
-			//p2.setBallIsColliding(true);
-			position.y *= -1.0f;
-			moveSpeed *= velocity;
-		}
+		position.x *= -1.0f;
+		moveSpeed += 0.015f;
 	}
-
-}
-
-void BallController::spawnBalls(GameObject* ball)
-{
-	ball->setPosition(11, 10);
-	activeBalls++;
-}
-
-void BallController::addBallObjects(GameObject* ball)
-{
-	balls.push_back(ball);
+	// React to top and bottom borders
+	if (objects->getName() == "Top")
+	{
+		p1Score++;
+		angle = slm::radians(rand() % 90 + 315);
+		direction.x = cosf(angle);
+		direction.y = sinf(angle);
+		moveSpeed = 0.3f;
+		getGameObject()->setPosition(11, 10);
+	}
+	if (objects->getName() == "Bottom")
+	{
+		p2Score++;
+		angle = slm::radians(rand() % 90 + 315);
+		direction.x = cosf(angle);
+		direction.y = sinf(angle);
+		moveSpeed = 0.3f;
+		getGameObject()->setPosition(11, 10);
+	}
+	// React to player pads
+	if (objects->getName() == "Player1Pad" || objects->getName() == "Player2Pad")
+	{
+		position.y *= -1.0f;
+		moveSpeed += 0.1f;
+	}
+	
 }
 
 BallController::~BallController()
 {
-	balls.clear();
+
 }

@@ -3,8 +3,6 @@
 #include "SpriteComponent.h"
 #include "GameObject.h"
 #include "Input.h"
-#include "Player1Controller.h"
-#include "Player2Controller.h"
 
 using namespace yam2d;
 
@@ -18,10 +16,6 @@ public:
 
 	void checkCollision(GameObject* objects, float deltaTime);
 
-	void addBallObjects(GameObject* ball);
-
-	void spawnBalls(GameObject* ball);
-
 	GameObject* getGameObject()
 	{
 		return (GameObject*)getOwner();
@@ -30,25 +24,15 @@ public:
 	{
 		return (const GameObject*)getOwner();
 	}
-	
-	std::vector<GameObject*> getBallVector()
-	{ 
-		return balls; 
-	}
 
-	BallController * clone() const
-	{
-		return new BallController(*this);
-	}
+	int getPlayer1Score(){ return p1Score; }
+	int getPlayer2Score(){ return p2Score; }
+
 private:
-	int activeBalls;
-	float timeSinceLastSpawn;
-	bool movement = false;
 	vec2 position;
-	float velocity;
 	float moveSpeed;
-	Player1Controller p1();
-	Player2Controller p2();
-	std::vector<GameObject*> balls;
-	std::vector<GameObject*>::iterator it;
+	float angle;
+	int p1Score;
+	int p2Score;
+	vec2 direction;
 };

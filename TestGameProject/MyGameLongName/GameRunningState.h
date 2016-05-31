@@ -22,7 +22,6 @@ private:
 	Ref<GameObject> m_gameObject;
 	Ref<TmxMap> m_tmap;
 	MyGameComponentFactory* m_componentFactory;
-	BallController* ball;
 	float mouseX = 0.0f;
 	float mouseY = 0.0f;
 
