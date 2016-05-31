@@ -22,17 +22,17 @@ public:
 		// create new sprite, with default parameters.
 		sprite = new Sprite(0);
 
-		//esLogMessage("Init... %d", cc++);
+		esLogMessage("Init... %d", cc++);
 		//// Load font texture. Made with font creation tool like bitmap font builder.
-		//fontTexture = new Texture("../assets/Fixedsys_24_Bold.png");
+		fontTexture = new Texture("../assets/Fixedsys_24_Bold.png");
 
-		//esLogMessage("Init... %d", cc++);
+		esLogMessage("Init... %d", cc++);
 		//// Create font clip areas (sprite sheet), from dat file and texture. Dat-file is made with bitmap font builder.
-		//font = SpriteSheet::autoFindFontFromTexture(fontTexture, "../assets/Fixedsys_24_Bold.dat");
+		font = SpriteSheet::autoFindFontFromTexture(fontTexture, "../assets/Fixedsys_24_Bold.dat");
 
 		esLogMessage("Init... %d", cc++);
 		// Create new text-object
-		//text = new Text(0, font);
+		text = new Text(0, font);
 
 		esLogMessage("Init... Done");
 		
@@ -42,8 +42,8 @@ public:
 	virtual bool update(ESContext* ctx, float deltaTime)
 	{
 		// Set text.
-		//text->setText("LOBSTERDOG IN SPACE");
-		//text->setColor(1.0, 0.0, 0.0, 1.0);
+		text->setText("ULTIMATE PONG GAME OF DISAPPOINTMENT");
+		text->setColor(0.0, 1.0, 0.0, 1.0);
 		
 		//text->setDepth(1.0f); // ilman ei näy teksti ???????
 
@@ -54,7 +54,7 @@ public:
 		batch->addSprite(openGLTexture, sprite, vec2(0, 0), 0, vec2(1280, 720));
 
 		// Add text to position -400,300
-		//batch->addText(fontTexture, text, vec2(-ctx->width / 12, ctx->height / 3), 0, vec2(2, 2));
+		batch->addText(fontTexture, text, vec2(-ctx->width / 30 - ctx->width / 6, -ctx->height / 30 - ctx->height / 6), 0, vec2(1, 1));
 
 		m_totalTime += deltaTime;
 

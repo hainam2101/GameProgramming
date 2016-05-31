@@ -3,15 +3,7 @@ Init... 0
 Init... 1
 init... 2
 Init... 3
+Init... 4
+Init... 5
 Init... Done
-Start pressed!
-Initializing Level 1!
-Map loading okay!
-EndScreenState::EndScreenState
-Init... 0
-init... 1
-Init... 2
-Init... 3
-Init... Done
-Deinit
 Exit pressed!

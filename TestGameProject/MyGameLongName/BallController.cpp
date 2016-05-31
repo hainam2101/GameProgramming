@@ -48,7 +48,7 @@ void BallController::checkCollision(GameObject* objects, float deltaTime)
 	if (objects->getName() == "LeftWall" || objects->getName() == "RightWall")
 	{
 		position.x *= -1.0f;
-		moveSpeed += 0.015f;
+		moveSpeed *= 1.05f;
 	}
 	// React to top and bottom borders
 	if (objects->getName() == "Top")
@@ -73,7 +73,7 @@ void BallController::checkCollision(GameObject* objects, float deltaTime)
 	if (objects->getName() == "Player1Pad" || objects->getName() == "Player2Pad")
 	{
 		position.y *= -1.0f;
-		moveSpeed += 0.1f;
+		moveSpeed *= 1.15f;
 	}
 	
 }

@@ -1,5 +1,44 @@
-﻿  main.cpp
-  Generating code
-f:\gitrepos\gameprogramming\testgameproject\mygamelongname\mainmenustate.cpp(152): warning C4715: 'MainMenuState::update' : not all control paths return a value
-  Finished generating code
-  MyGameLongName.vcxproj -> F:\GitRepos\GameProgramming\TestGameProject\Release\MyGameLongName.exe
+﻿Build started 31.5.2016 22.36.48.
+     1>Project "C:\Users\nissi\Documents\GitHub\GameProgramming\TestGameProject\MyGameLongName\MyGameLongName.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\nissi\Documents\GitHub\GameProgramming\TestGameProject\\..\yam2d\engine\include\ /IC:\Users\nissi\Documents\GitHub\GameProgramming\TestGameProject\\..\yam2d\engine\external\ /Zi /nologo /W3 /WX- /sdl /Od /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt BallController.cpp GameApp.cpp GameRunningState.cpp main.cpp MainMenuState.cpp MyGameComponentFactory.cpp Player2Controller.cpp Player1Controller.cpp
+         BallController.cpp
+     1>BallController.cpp(9): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>BallController.cpp(30): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>BallController.cpp(57): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>BallController.cpp(66): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         GameApp.cpp
+         GameRunningState.cpp
+     1>c:\users\nissi\documents\github\gameprogramming\testgameproject\mygamelongname\EndScreenState.h(54): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\nissi\documents\github\gameprogramming\testgameproject\mygamelongname\EndScreenState.h(55): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameRunningState.cpp(68): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameRunningState.cpp(68): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>GameRunningState.cpp(69): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>GameRunningState.cpp(81): warning C4018: '<' : signed/unsigned mismatch
+     1>GameRunningState.cpp(91): warning C4018: '<' : signed/unsigned mismatch
+     1>GameRunningState.cpp(151): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+         main.cpp
+     1>c:\users\nissi\documents\github\gameprogramming\testgameproject\mygamelongname\SplashScreenState.h(57): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         MainMenuState.cpp
+         MyGameComponentFactory.cpp
+         Player2Controller.cpp
+         Player1Controller.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\nissi\Documents\GitHub\GameProgramming\TestGameProject\Release\MyGameLongName.exe" /NOLOGO /LIBPATH:C:\Users\nissi\Documents\GitHub\GameProgramming\TestGameProject\\..\yam2d\engine\lib\win32 libEGL.lib libGLES_cm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\nissi\Documents\GitHub\GameProgramming\TestGameProject\Release\MyGameLongName.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\nissi\Documents\GitHub\GameProgramming\TestGameProject\Release\MyGameLongName.lib" /MACHINE:X86 /SAFESEH Release\BallController.obj
+         Release\GameApp.obj
+         Release\GameRunningState.obj
+         Release\main.obj
+         Release\MainMenuState.obj
+         Release\MyGameComponentFactory.obj
+         Release\Player2Controller.obj
+         Release\Player1Controller.obj
+         C:\Users\nissi\Documents\GitHub\GameProgramming\yam2d\engine\lib\win32_vs13\Release\yam2d.lib
+         Generating code
+     1>c:\users\nissi\documents\github\gameprogramming\testgameproject\mygamelongname\mainmenustate.cpp(152): warning C4715: 'MainMenuState::update' : not all control paths return a value
+         Finished generating code
+         MyGameLongName.vcxproj -> C:\Users\nissi\Documents\GitHub\GameProgramming\TestGameProject\Release\MyGameLongName.exe
+     1>Done Building Project "C:\Users\nissi\Documents\GitHub\GameProgramming\TestGameProject\MyGameLongName\MyGameLongName.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:07.42
